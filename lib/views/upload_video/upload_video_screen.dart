@@ -1,6 +1,4 @@
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +12,6 @@ class UploadVideoScreen extends StatefulWidget {
 }
 
 class _UploadVideoScreenState extends State<UploadVideoScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +24,8 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
               elevation: 10,
               color: Colors.white30,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16),
                 child: Column(
                   children: [
                     SizedBox(
@@ -36,13 +34,15 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                         onPressed: () {
                           getVideoFile(ImageSource.gallery);
                         },
-                        style:ElevatedButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 20),
-                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical:4),
-                            elevation: 1,
-                            //primary: Colors.white12, // background
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          textStyle: const TextStyle(fontSize: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 4),
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                         ),
                         child: const Row(
                           children: [
@@ -51,26 +51,33 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                             ),
                             Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Gallery',style: TextStyle(fontSize: 20),),
+                              child: Text(
+                                'Gallery',
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.8,
                       child: ElevatedButton(
                         onPressed: () {
                           getVideoFile(ImageSource.camera);
                         },
-                        style:ElevatedButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 20),
-                            padding: const EdgeInsets.symmetric(horizontal: 40, vertical:4),
-                            elevation: 1,
-                            //primary: Colors.black54, // background
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          textStyle: const TextStyle(fontSize: 20),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 4),
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
                         ),
                         child: const Row(
                           children: [
@@ -79,7 +86,10 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                             ),
                             Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Camera',style: TextStyle(fontSize: 20),),
+                              child: Text(
+                                'Camera',
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                           ],
                         ),
@@ -97,13 +107,13 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
 
   getVideoFile(ImageSource imageSource) async {
     final videoFile = await ImagePicker().pickVideo(source: imageSource);
-    if(videoFile != null) {
-      Get.to(UploadForm(
-        videoFile: File(videoFile.path),
-        videoPath: videoFile.path,),
+    if (videoFile != null) {
+      Get.to(
+        UploadForm(
+          videoFile: File(videoFile.path),
+          videoPath: videoFile.path,
+        ),
       );
     }
   }
-
-
 }

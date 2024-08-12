@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,8 +10,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
-
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   double width = 100;
   double height = 100;
   bool isExpanded = false;
@@ -19,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   late AnimationController controller;
   late Animation<double> turns;
   late Animation<double> deg;
-
 
   @override
   void initState() {
@@ -32,7 +33,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       Get.offNamed('/auth');
     });
 
-
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5),
@@ -40,9 +40,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     turns = CurvedAnimation(parent: controller, curve: Curves.linear);
     deg = Tween(begin: 0.0, end: 45.0).animate(
-        CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic),
+      CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic),
     );
-
   }
 
   @override
@@ -53,16 +52,29 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/logos/logo.png',height: 180, width: 150,),
+            Image.asset(
+              'assets/logos/logo.png',
+              height: 180,
+              width: 150,
+            ),
             //const Text('Next Byte', style: TextStyle(fontSize: 34, fontWeight: FontWeight.w700),),
             TweenAnimationBuilder<TextStyle>(
               duration: const Duration(seconds: 2),
               curve: Curves.easeInOutCubic,
               tween: TextStyleTween(
-                begin: const TextStyle(fontSize: 34, letterSpacing: 10,),
-                end: const TextStyle(fontSize: 26, letterSpacing: 1,),
+                begin: const TextStyle(
+                  fontSize: 34,
+                  letterSpacing: 10,
+                ),
+                end: const TextStyle(
+                  fontSize: 26,
+                  letterSpacing: 1,
+                ),
               ),
-              builder: (context, value, _)  => Text('Next Byte', style: value,),
+              builder: (context, value, _) => Text(
+                'Next Byte',
+                style: value,
+              ),
             ),
           ],
         ),
@@ -70,7 +82,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Text('Next Digit', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
+        child: Text(
+          'Next Digit',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+        ),
       ),
     );
   }

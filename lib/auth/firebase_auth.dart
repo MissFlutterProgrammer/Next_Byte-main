@@ -1,24 +1,25 @@
+// ignore_for_file: deprecated_member_use
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthService{
-
+class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static User? get user => _auth.currentUser;
 
   //Login
-  static Future<bool> login(String email, String password) async{
-    final credential = await _auth.signInWithEmailAndPassword(email: email, password: password);
+  static Future<bool> login(String email, String password) async {
+    final credential = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
     return credential.user != null;
   }
 
   //Register
-  static Future<bool> register(String email, String password) async{
-    final credential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  static Future<bool> register(String email, String password) async {
+    final credential = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
     return credential.user != null;
   }
-
 
   //SignIn With Google
   static Future<UserCredential> signInWithGoogle() async {
@@ -26,7 +27,8 @@ class AuthService{
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(
@@ -38,10 +40,8 @@ class AuthService{
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-
   //LogOut
   static Future<void> logout() => _auth.signOut();
-
 
   //Update User Email
   static Future<void> updateEmail(String email) {
@@ -60,7 +60,4 @@ class AuthService{
   static Future<void> changePassword(String newPassword) {
     return _auth.currentUser!.updatePassword(newPassword);
   }
-
-
-
 }

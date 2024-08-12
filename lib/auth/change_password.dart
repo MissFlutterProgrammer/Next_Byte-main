@@ -1,17 +1,17 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../utils/helper_functions.dart';
 
 class ChangePassword extends StatefulWidget {
-  const ChangePassword({Key? key}) : super(key: key);
+  const ChangePassword({super.key});
 
   @override
   State<ChangePassword> createState() => _ChangePasswordState();
 }
 
 class _ChangePasswordState extends State<ChangePassword> {
-
   final _formKey = GlobalKey<FormState>();
   final currentUser = FirebaseAuth.instance.currentUser;
   var newPassword = "";
@@ -22,6 +22,7 @@ class _ChangePasswordState extends State<ChangePassword> {
     newPasswordController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +56,8 @@ class _ChangePasswordState extends State<ChangePassword> {
                     hintText: 'Enter New Password',
                     labelStyle: TextStyle(fontSize: 20.0),
                     border: OutlineInputBorder(),
-                    errorStyle: TextStyle(color: Colors.redAccent, fontSize: 15),
+                    errorStyle:
+                        TextStyle(color: Colors.redAccent, fontSize: 15),
                   ),
                   controller: newPasswordController,
                   validator: (value) {
@@ -107,5 +109,4 @@ class _ChangePasswordState extends State<ChangePassword> {
       showMessage(context, 'Request Failed!. Please Try Again...');
     }
   }
-
 }

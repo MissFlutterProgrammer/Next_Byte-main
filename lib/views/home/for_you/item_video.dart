@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -10,18 +9,18 @@ class ItemVideo extends StatefulWidget {
   State<ItemVideo> createState() => _ItemVideoState();
 }
 
-class _ItemVideoState extends State<ItemVideo>{
-
+class _ItemVideoState extends State<ItemVideo> {
   late VideoPlayerController _controller;
 
   @override
   void initState() {
+    super.initState();
     _controller = VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl))
       ..initialize().then((value) {
-      _controller.setVolume(2);
-      _controller.setLooping(true);
-      _controller.play();
-    });
+        _controller.setVolume(2);
+        _controller.setLooping(true);
+        _controller.play();
+      });
   }
 
   @override
@@ -43,4 +42,3 @@ class _ItemVideoState extends State<ItemVideo>{
     );
   }
 }
-

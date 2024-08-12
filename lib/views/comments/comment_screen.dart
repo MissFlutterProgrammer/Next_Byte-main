@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:next_byte/auth/firebase_auth.dart';
 import 'package:next_byte/controllers/comment_controller.dart';
-import 'package:next_byte/utils/constants.dart';
 import 'package:timeago/timeago.dart' as tago;
 
 class CommentScreen extends StatelessWidget {
   final String videoID;
   CommentScreen({
-    Key? key,
+    super.key,
     required this.videoID,
-  }) : super(key: key);
+  });
 
   final _commentController = TextEditingController();
   final CommentController commentController = Get.put(CommentController());
@@ -40,7 +39,8 @@ class CommentScreen extends StatelessWidget {
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundColor: Colors.white10,
-                              backgroundImage: NetworkImage(comment.userProfileImage),
+                              backgroundImage:
+                                  NetworkImage(comment.userProfileImage),
                             ),
                             title: Row(
                               children: [

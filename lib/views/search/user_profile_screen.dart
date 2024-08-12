@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,9 +7,9 @@ import 'package:next_byte/controllers/profile_controller.dart';
 class UserProfileScreen extends StatefulWidget {
   final String uid;
   const UserProfileScreen({
-    Key? key,
+    super.key,
     required this.uid,
-  }) : super(key: key);
+  });
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -54,7 +53,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   SizedBox(
                     child: Column(
                       children: [
-                        const SizedBox(height: 8,),
+                        const SizedBox(
+                          height: 8,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -65,16 +66,18 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 height: 100,
                                 width: 100,
                                 placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                                    const CircularProgressIndicator(),
                                 errorWidget: (context, url, error) =>
-                                const Icon(
+                                    const Icon(
                                   Icons.error,
                                 ),
                               ),
                             )
                           ],
                         ),
-                        const SizedBox(height: 8,),
+                        const SizedBox(
+                          height: 8,
+                        ),
                         Text(
                           'user/@${controller.user['name']}',
                           style: const TextStyle(
@@ -83,7 +86,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        const SizedBox(height: 15,),
+                        const SizedBox(
+                          height: 15,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -187,8 +192,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   widget.uid == AuthService.user!.uid
                                       ? 'Sign Out'
                                       : controller.user['isFollowing']
-                                      ? 'Unfollow'
-                                      : 'Follow',
+                                          ? 'Unfollow'
+                                          : 'Follow',
                                   style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500,
@@ -207,16 +212,16 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.user['thumbnailUrl'].length,
                           gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             childAspectRatio: 1,
                             crossAxisSpacing: 5,
                           ),
                           itemBuilder: (context, index) {
                             String thumbnail =
-                            controller.user['thumbnailUrl'][index];
+                                controller.user['thumbnailUrl'][index];
                             return InkWell(
-                              onTap: (){},
+                              onTap: () {},
                               child: Card(
                                 elevation: 5,
                                 child: CachedNetworkImage(

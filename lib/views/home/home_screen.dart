@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int screenIndex = 0;
   List screenList = [
     ForYouVideoScreen(),
@@ -26,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
     const FollowingsVideoScreen(),
     const ProfileScreen(),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,37 +35,36 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           PopupMenuButton(
               itemBuilder: (context) => [
-                PopupMenuItem(
-                  onTap: () async {
-                    final navigator = Navigator.of(context);
-                    await Future.delayed(Duration.zero);
-                    //Get.to(() => const ProfileScreen());
-                    Get.toNamed('/profile');
-                  },
-                  child: const Text('Profile'),
-                ),
-                PopupMenuItem(
-                  onTap: () async {
-                    final navigator = Navigator.of(context);
-                    await Future.delayed(Duration.zero);
-                    //Get.to(() => const HomeScreen());
-                    Get.offAllNamed('/Settings');
-                  },
-                  child: const Text('Settings'),
-                ),
-                PopupMenuItem(
-                  onTap: () async {
-                    final navigator = Navigator.of(context);
-                    await Future.delayed(Duration.zero);
+                    PopupMenuItem(
+                      onTap: () async {
+                        Navigator.of(context);
+                        await Future.delayed(Duration.zero);
+                        //Get.to(() => const ProfileScreen());
+                        Get.toNamed('/profile');
+                      },
+                      child: const Text('Profile'),
+                    ),
+                    PopupMenuItem(
+                      onTap: () async {
+                        Navigator.of(context);
+                        await Future.delayed(Duration.zero);
+                        //Get.to(() => const HomeScreen());
+                        Get.offAllNamed('/Settings');
+                      },
+                      child: const Text('Settings'),
+                    ),
+                    PopupMenuItem(
+                      onTap: () async {
+                        Navigator.of(context);
+                        await Future.delayed(Duration.zero);
 
-                    AuthService.logout().then((value) =>
-                        Get.offAllNamed('/auth'),
-                    );
-                  },
-                  child: const Text('Logout'),
-                ),
-              ]
-          ),
+                        AuthService.logout().then(
+                          (value) => Get.offAllNamed('/auth'),
+                        );
+                      },
+                      child: const Text('Logout'),
+                    ),
+                  ]),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -83,25 +80,35 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30,),
+            icon: Icon(
+              Icons.home,
+              size: 30,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 30,),
+            icon: Icon(
+              Icons.search,
+              size: 30,
+            ),
             label: 'Discover',
           ),
-
           BottomNavigationBarItem(
             icon: CustomAddIcon(),
             label: '',
           ),
-
           BottomNavigationBarItem(
-            icon: Icon(Icons.inbox_sharp, size: 30,),
+            icon: Icon(
+              Icons.inbox_sharp,
+              size: 30,
+            ),
             label: 'Following',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, size: 30,),
+            icon: Icon(
+              Icons.person,
+              size: 30,
+            ),
             label: 'Me',
           ),
         ],

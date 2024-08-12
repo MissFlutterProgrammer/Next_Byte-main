@@ -1,15 +1,16 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+  const ResetPassword({super.key});
 
   @override
   State<ResetPassword> createState() => _ResetPasswordState();
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
-
   final _formKey = GlobalKey<FormState>();
 
   var email = "";
@@ -51,7 +52,8 @@ class _ResetPasswordState extends State<ResetPassword> {
             child: Form(
               key: _formKey,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 child: ListView(
                   children: [
                     Container(
@@ -63,8 +65,8 @@ class _ResetPasswordState extends State<ResetPassword> {
                               borderRadius: BorderRadius.circular(10)),
                           labelText: 'Email',
                           prefixIcon: const Icon(Icons.email),
-                          errorStyle:
-                          const TextStyle(color: Colors.redAccent, fontSize: 15),
+                          errorStyle: const TextStyle(
+                              color: Colors.redAccent, fontSize: 15),
                         ),
                         controller: emailController,
                         validator: (value) {
@@ -77,7 +79,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -93,14 +97,17 @@ class _ResetPasswordState extends State<ResetPassword> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,),
+                              backgroundColor: Colors.blue,
+                            ),
                             child: const Text(
                               'Send Email',
                               style: TextStyle(fontSize: 18.0),
                             ),
                           ),
                         ),
-                        const SizedBox(width: 10,),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         TextButton(
                           onPressed: () => {
                             Navigator.pop(context),
@@ -112,7 +119,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -121,8 +130,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                           onPressed: () {
                             //Navigator.pushNamed(context, PhoneVerify.routeName);
                           },
-                          child: const Text('Signup',
-                            style: TextStyle(color: Colors.blue,),),
+                          child: const Text(
+                            'Signup',
+                            style: TextStyle(
+                              color: Colors.blue,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -150,7 +163,6 @@ class _ResetPasswordState extends State<ResetPassword> {
       );
       Navigator.pop(context);
       print('Password Reset Email has been sent !');
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -166,5 +178,4 @@ class _ResetPasswordState extends State<ResetPassword> {
       }
     }
   }
-
 }

@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 
 import 'dart:io';
 
@@ -40,7 +41,6 @@ class _SignupScreenState extends State<SignupScreen> {
   String? _imagePath;
   ImageSource _imageSource = ImageSource.camera;
 
-
   @override
   void dispose() {
     nameController.dispose();
@@ -57,32 +57,47 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
           Card(
             //elevation: 10,
-            child: _imagePath == null ?
-            isUploading? const SizedBox(
-              child: SimpleCircularProgressBar(
-                progressColors: [
-                  Colors.greenAccent,
-                  Colors.blueAccent,
-                  Colors.redAccent,
-                  Colors.orangeAccent,
-                ],
-                animationDuration: 2,
-                backColor: Colors.white38,
-              ),
-            ) :
-            Image.asset('assets/images/person.png',height: 160, width: 150,fit: BoxFit.cover,) :
-            Image.file(File(_imagePath!),height: 160, width: 150,fit: BoxFit.cover,),
+            child: _imagePath == null
+                ? isUploading
+                    ? const SizedBox(
+                        child: SimpleCircularProgressBar(
+                          progressColors: [
+                            Colors.greenAccent,
+                            Colors.blueAccent,
+                            Colors.redAccent,
+                            Colors.orangeAccent,
+                          ],
+                          animationDuration: 2,
+                          backColor: Colors.white38,
+                        ),
+                      )
+                    : Image.asset(
+                        'assets/images/person.png',
+                        height: 160,
+                        width: 150,
+                        fit: BoxFit.cover,
+                      )
+                : Image.file(
+                    File(_imagePath!),
+                    height: 160,
+                    width: 150,
+                    fit: BoxFit.cover,
+                  ),
             //Image.network(_imagePath!,height: 160, width: 150,fit: BoxFit.cover,),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton.icon(
-                  onPressed: (){
+                  onPressed: () {
                     _imageSource = ImageSource.camera;
                     //authController.getImageFromGallery();
                     _getImage();
@@ -90,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   icon: const Icon(Icons.camera),
                   label: const Text('Camera')),
               TextButton.icon(
-                  onPressed: (){
+                  onPressed: () {
                     _imageSource = ImageSource.gallery;
                     _getImage();
                   },
@@ -98,11 +113,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   label: const Text('Gallery')),
             ],
           ),
-          const SizedBox(height: 15,),
+          const SizedBox(
+            height: 15,
+          ),
         ],
       ),
     );
   }
+
   Widget _buildSelectGender() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -141,12 +159,17 @@ class _SignupScreenState extends State<SignupScreen> {
       ],
     );
   }
+
   Widget _buildDOB() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextButton(onPressed: _selectDate,
-            child: const Text('Select Date of Birth: ', style: TextStyle(fontSize: 16),)),
+        TextButton(
+            onPressed: _selectDate,
+            child: const Text(
+              'Select Date of Birth: ',
+              style: TextStyle(fontSize: 16),
+            )),
         Text(_dob == null ? 'No Date Selected' : _dob!)
       ],
     );
@@ -218,10 +241,9 @@ class _SignupScreenState extends State<SignupScreen> {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Email must not be empty!';
-              }else if (!value.contains('@')) {
+              } else if (!value.contains('@')) {
                 return 'Please Enter Valid Email';
-              }
-              else {
+              } else {
                 return null;
               }
             },
@@ -323,9 +345,8 @@ class _SignupScreenState extends State<SignupScreen> {
                 color: Colors.white,
               ),
               suffixIcon: IconButton(
-                icon: Icon(isObscureText
-                    ? Icons.visibility_off
-                    : Icons.visibility),
+                icon: Icon(
+                    isObscureText ? Icons.visibility_off : Icons.visibility),
                 onPressed: () {
                   setState(() {
                     isObscureText = !isObscureText;
@@ -345,7 +366,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
-      child: ElevatedButton (
+      child: ElevatedButton(
         onPressed: () {
           _saveUserInfo();
           print('Signup Button Pressed');
@@ -357,8 +378,7 @@ class _SignupScreenState extends State<SignupScreen> {
             elevation: 5.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
-            )
-        ),
+            )),
         child: const Text(
           'SIGN UP',
           style: TextStyle(
@@ -445,13 +465,18 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        const Text('Next Byte',style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'OpenSans',
-                          fontSize: 36.0,
-                          fontWeight: FontWeight.bold,
-                        ),),
-                        const SizedBox(height: 5,),
+                        const Text(
+                          'Next Byte',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'OpenSans',
+                            fontSize: 36.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
                         const Text(
                           'Create New Account',
                           style: TextStyle(
@@ -490,48 +515,46 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-
-  void _saveUserInfo()  async{
-    if(formKey.currentState!.validate()) {
-
-      if(_genderGroupValue == null){
+  void _saveUserInfo() async {
+    if (formKey.currentState!.validate()) {
+      if (_genderGroupValue == null) {
         Fluttertoast.showToast(
           msg: 'Please select your gender',
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.redAccent,
-          textColor: Colors.white,);
-
-      } else if (_dob == null){
+          textColor: Colors.white,
+        );
+      } else if (_dob == null) {
         Fluttertoast.showToast(
           msg: 'Please select your date of birth',
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.redAccent,
-          textColor: Colors.white,);
-      }
-      else {
+          textColor: Colors.white,
+        );
+      } else {
         EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
         try {
-          if(await AuthService.register(emailController.text, passwordController.text)){
-
+          if (await AuthService.register(
+              emailController.text, passwordController.text)) {
             late String? imageUrl;
 
-            if(_imagePath != null){
+            if (_imagePath != null) {
               setState(() {
                 isUploading = true;
               });
               try {
-                final imageUrlX = await authController.updateImage(XFile(_imagePath!));
+                final imageUrlX =
+                    await authController.updateImage(XFile(_imagePath!));
                 print('--------Image Upload Completed--------');
                 setState(() {
                   imageUrl = imageUrlX;
                   isUploading = false;
                 });
-              } catch(e) {
+              } catch (e) {
                 print('Error:-----> $e');
                 Get.snackbar('Network Error', 'Image upload failed!');
                 return null;
               }
-
             } else {
               imageUrl = null;
             }
@@ -544,31 +567,34 @@ class _SignupScreenState extends State<SignupScreen> {
               mobile: mobileController.text,
               dob: _dob,
               gender: _genderGroupValue,
-              userCreationTime: Timestamp.fromDate(AuthService.user!.metadata.creationTime!),
+              userCreationTime:
+                  Timestamp.fromDate(AuthService.user!.metadata.creationTime!),
             );
-            if(!mounted) return;
+            if (!mounted) return;
             authController.addUser(userModel).then((value) {
               EasyLoading.dismiss();
-              Get.snackbar("Account Created", "Congratulations!, your account has been created.");
+              Get.snackbar("Account Created",
+                  "Congratulations!, your account has been created.");
               //Get.offAll(() => const LauncherScreen());
               Get.offAllNamed('/auth');
             });
           }
-        }on FirebaseAuthException catch(e) {
+        } on FirebaseAuthException catch (e) {
           print('Error: ------> ${e.message!}');
           EasyLoading.dismiss();
-          Get.snackbar("Account Creation Unsuccessful", "Error occurred while creating account. Try Again.");
+          Get.snackbar("Account Creation Unsuccessful",
+              "Error occurred while creating account. Try Again.");
           Fluttertoast.showToast(
             msg: e.message!,
             //msg: 'The email address is already in use by another account.',
             timeInSecForIosWeb: 1,
             backgroundColor: Colors.redAccent,
-            textColor: Colors.white,);
+            textColor: Colors.white,
+          );
         }
       }
     }
   }
-
 
   void _selectDate() async {
     final selectedDate = await showDatePicker(
@@ -584,18 +610,11 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _getImage() async {
-    final selectedImage = await ImagePicker()
-        .pickImage(source: _imageSource);
-    if(selectedImage!=null){
-      setState((){
+    final selectedImage = await ImagePicker().pickImage(source: _imageSource);
+    if (selectedImage != null) {
+      setState(() {
         _imagePath = selectedImage.path;
       });
     }
   }
-
-
-
 }
-
-
-

@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print, unused_element, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,7 +23,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   var authController = AuthController.instanceAuth;
 
   final emailController = TextEditingController();
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void getLoginData() async {
-    if(box.get('email') != null && box.get('password') != null) {
+    if (box.get('email') != null && box.get('password') != null) {
       emailController.text = box.get('email');
       passwordController.text = box.get('password');
       setState(() {
@@ -84,10 +84,9 @@ class _LoginScreenState extends State<LoginScreen> {
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Email must not be empty!';
-              }else if (!value.contains('@')) {
+              } else if (!value.contains('@')) {
                 return 'Please Enter Valid Email';
-              }
-              else {
+              } else {
                 return null;
               }
             },
@@ -145,9 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Colors.white,
               ),
               suffixIcon: IconButton(
-                icon: Icon(isObscureText
-                    ? Icons.visibility_off
-                    : Icons.visibility),
+                icon: Icon(
+                    isObscureText ? Icons.visibility_off : Icons.visibility),
                 onPressed: () {
                   setState(() {
                     isObscureText = !isObscureText;
@@ -166,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildForgotPasswordBtn() {
     return Container(
       alignment: Alignment.centerRight,
-      child: TextButton (
+      child: TextButton(
         onPressed: () {
           print('Forgot Password Button Pressed');
           Get.to(() => const SignupScreen());
@@ -211,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25.0),
       width: double.infinity,
-      child: ElevatedButton (
+      child: ElevatedButton(
         onPressed: () {
           print('Login Button Pressed');
           authenticate();
@@ -223,8 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
             elevation: 5.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
-            )
-        ),
+            )),
         child: const Text(
           'LOGIN',
           style: TextStyle(
@@ -302,35 +299,37 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _buildSocialBtn(
-                () => print('Login with Facebook'),
+            () => print('Login with Facebook'),
             const AssetImage(
               'assets/logos/facebook.jpg',
             ),
           ),
           _buildSocialBtn(
-                () {
-                  print('Login with Google');
-                  AuthService.signInWithGoogle().then((credential) async {
-                    if(credential.user != null) {
-                      if(!await authController.doseUserExist(credential.user!.uid)) {
-
-                        EasyLoading.show(status: 'Please Wait....',dismissOnTap: false);
-                        final userModel = UserModel(
-                            uid: AuthService.user!.uid,
-                            image: AuthService.user!.photoURL,
-                            name: credential.user!.displayName,
-                            email: AuthService.user!.email!,
-                            mobile: credential.user!.phoneNumber,
-                            userCreationTime: Timestamp.fromDate(credential.user!.metadata.creationTime!),
-                        );
-                        await authController.addUser(userModel);
-                        EasyLoading.dismiss();
-                      }
-                      //Get.offAll(() => const LauncherScreen());
-                      Get.offAllNamed('/auth');
-                    }
-                  });
-                },
+            () {
+              print('Login with Google');
+              AuthService.signInWithGoogle().then((credential) async {
+                if (credential.user != null) {
+                  if (!await authController
+                      .doseUserExist(credential.user!.uid)) {
+                    EasyLoading.show(
+                        status: 'Please Wait....', dismissOnTap: false);
+                    final userModel = UserModel(
+                      uid: AuthService.user!.uid,
+                      image: AuthService.user!.photoURL,
+                      name: credential.user!.displayName,
+                      email: AuthService.user!.email!,
+                      mobile: credential.user!.phoneNumber,
+                      userCreationTime: Timestamp.fromDate(
+                          credential.user!.metadata.creationTime!),
+                    );
+                    await authController.addUser(userModel);
+                    EasyLoading.dismiss();
+                  }
+                  //Get.offAll(() => const LauncherScreen());
+                  Get.offAllNamed('/auth');
+                }
+              });
+            },
             const AssetImage(
               'assets/logos/google.jpg',
             ),
@@ -422,7 +421,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 30.0),
                         _buildEmailTF(),
-                        const SizedBox(height: 30.0,),
+                        const SizedBox(
+                          height: 30.0,
+                        ),
                         _buildPasswordTF(),
                         _buildForgotPasswordBtn(),
                         _buildRememberMeCheckbox(),
@@ -442,37 +443,40 @@ class _LoginScreenState extends State<LoginScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: Text('Next Digit', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),),
+        child: Text(
+          'Next Digit',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+        ),
       ),
     );
   }
 
-  void authenticate()  async{
-    if(formKey.currentState!.validate()) {
-      if(_rememberMe) {
+  void authenticate() async {
+    if (formKey.currentState!.validate()) {
+      if (_rememberMe) {
         box.put('email', emailController.text);
         box.put('password', passwordController.text);
       }
-      if(!_rememberMe) {
+      if (!_rememberMe) {
         box.clear();
         box.delete('loginData');
       }
       EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
       try {
-        final status = await AuthService.login(emailController.text, passwordController.text);
-        if(status) {
-          if(!mounted) return;
+        final status = await AuthService.login(
+            emailController.text, passwordController.text);
+        if (status) {
+          if (!mounted) return;
           EasyLoading.dismiss();
           //Get.offAll(() => const LauncherScreen());
           Get.offAllNamed('/auth');
-
         }
-      }on FirebaseAuthException catch(e) {
+      } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.orange[900],
             content: const Text(
-                'Incorrect email or password.',
+              'Incorrect email or password.',
               style: TextStyle(fontSize: 18.0),
             ),
           ),
@@ -482,8 +486,4 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
   }
-
 }
-
-
-

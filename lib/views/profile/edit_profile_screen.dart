@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,10 +11,9 @@ import 'package:next_byte/models/user_model.dart';
 import 'package:next_byte/utils/helper_functions.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
-
 class EditProfileScreen extends StatefulWidget {
   static const String routeName = '/profile';
-  const EditProfileScreen({Key? key}) : super(key: key);
+  const EditProfileScreen({super.key});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -23,10 +23,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Size? size;
   var authController = AuthController.instanceAuth;
 
-  final textController =TextEditingController();
+  final textController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _progressBar = false;
-
 
   @override
   void dispose() {
@@ -63,13 +62,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
           stream: authController.getUserById(AuthService.user!.uid),
           builder: (context, snapshot) {
-            if(snapshot.hasData) {
+            if (snapshot.hasData) {
               final userModel = UserModel.fromMap(snapshot.data!.data()!);
               return ListView(
                 children: [
                   Column(
                     children: [
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Card(
                         color: Colors.white70,
                         elevation: 10,
@@ -83,24 +84,36 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: userModel.image == null ?
-                              Image.asset('images/male.png',
-                                width: 200, height: 200, fit: BoxFit.cover,) :
-                              Image.network(userModel.image!,
-                                width: 200, height: 200, fit: BoxFit.cover,),
+                              child: userModel.image == null
+                                  ? Image.asset(
+                                      'images/male.png',
+                                      width: 200,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.network(
+                                      userModel.image!,
+                                      width: 200,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                             Positioned(
                               bottom: 35,
                               right: 80,
                               child: IconButton(
                                   onPressed: _getImage,
-                                  icon: const Icon(Icons.add_a_photo,size: 40,)),
+                                  icon: const Icon(
+                                    Icons.add_a_photo,
+                                    size: 40,
+                                  )),
                             ),
-                            if(_progressBar) Positioned(
-                              right: 50,
-                              left: 50,
-                              child:  _buildLoadingBtn(),
-                            ),
+                            if (_progressBar)
+                              Positioned(
+                                right: 50,
+                                left: 50,
+                                child: _buildLoadingBtn(),
+                              ),
                           ],
                         ),
                       ),
@@ -114,109 +127,168 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             child: Column(
                               children: [
                                 ListTile(
-                                    title: Text(userModel.email,style: const TextStyle(color: Colors.black),),
-                                    trailing: AuthService.user!.emailVerified ?
-                                    const Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text('Verified', style: TextStyle(color: Colors.green),),
-                                        SizedBox(width: 5,),
-                                        Icon(Icons.verified_user, color: Colors.green,),
-                                      ],
-                                    ) :
-                                    TextButton(
-                                      onPressed: () {
-                                        verifyEmail();
-                                      },
-                                      child: const Text('-> Verify', style: TextStyle(color: Colors.blueAccent),),
-                                    )
-                                ),
+                                    title: Text(
+                                      userModel.email,
+                                      style:
+                                          const TextStyle(color: Colors.black),
+                                    ),
+                                    trailing: AuthService.user!.emailVerified
+                                        ? const Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                'Verified',
+                                                style: TextStyle(
+                                                    color: Colors.green),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Icon(
+                                                Icons.verified_user,
+                                                color: Colors.green,
+                                              ),
+                                            ],
+                                          )
+                                        : TextButton(
+                                            onPressed: () {
+                                              verifyEmail();
+                                            },
+                                            child: const Text(
+                                              '-> Verify',
+                                              style: TextStyle(
+                                                  color: Colors.blueAccent),
+                                            ),
+                                          )),
                                 ListTile(
-                                  title: Text(userModel.name == null ||  userModel.name!.isEmpty ?
-                                  'No display name added' : userModel.name!,
-                                    style: userModel.name == null ||  userModel.name!.isEmpty ?
-                                    const TextStyle(color: Colors.grey,fontSize: 14) :
-                                    const TextStyle(color: Colors.black,),
+                                  title: Text(
+                                    userModel.name == null ||
+                                            userModel.name!.isEmpty
+                                        ? 'No display name added'
+                                        : userModel.name!,
+                                    style: userModel.name == null ||
+                                            userModel.name!.isEmpty
+                                        ? const TextStyle(
+                                            color: Colors.grey, fontSize: 14)
+                                        : const TextStyle(
+                                            color: Colors.black,
+                                          ),
                                   ),
                                   trailing: IconButton(
-                                    icon: const Icon(Icons.edit,color: Colors.blueAccent,),
-                                    onPressed: (){
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: Colors.blueAccent,
+                                    ),
+                                    onPressed: () {
                                       showInputDialog(
                                           title: 'Display Name',
                                           value: userModel.name,
                                           onSaved: (value) async {
                                             authController.updateProfile(
                                                 AuthService.user!.uid,
-                                                {'name' : value});
-                                            await AuthService.updateDisplayName(value);
+                                                {'name': value});
+                                            await AuthService.updateDisplayName(
+                                                value);
                                           });
                                     },
                                   ),
                                 ),
                                 ListTile(
-                                  title: Text(userModel.mobile == null ||  userModel.mobile!.isEmpty ?
-                                  'No mobile number added' : 'Mobile: ${userModel.mobile!}',
-                                    style: userModel.mobile == null ||  userModel.mobile!.isEmpty ?
-                                    const TextStyle(color: Colors.grey,fontSize: 14) :
-                                    const TextStyle(color: Colors.black,),
+                                  title: Text(
+                                    userModel.mobile == null ||
+                                            userModel.mobile!.isEmpty
+                                        ? 'No mobile number added'
+                                        : 'Mobile: ${userModel.mobile!}',
+                                    style: userModel.mobile == null ||
+                                            userModel.mobile!.isEmpty
+                                        ? const TextStyle(
+                                            color: Colors.grey, fontSize: 14)
+                                        : const TextStyle(
+                                            color: Colors.black,
+                                          ),
                                   ),
                                   trailing: IconButton(
-                                    icon: const Icon(Icons.edit,color: Colors.blueAccent,),
-                                    onPressed: (){
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: Colors.blueAccent,
+                                    ),
+                                    onPressed: () {
                                       showInputDialog(
                                           title: 'Mobile Number',
                                           value: userModel.mobile,
                                           onSaved: (value) {
                                             authController.updateProfile(
                                                 AuthService.user!.uid,
-                                                {'mobile' : value});
+                                                {'mobile': value});
                                           });
                                     },
                                   ),
                                 ),
                                 ListTile(
-                                  title: Text(userModel.dob == null ||  userModel.dob!.isEmpty ?
-                                  'No Date of birth added' : 'Date of birth: ${userModel.dob!}',
-                                    style: userModel.dob == null ||  userModel.dob!.isEmpty ?
-                                    const TextStyle(color: Colors.grey,fontSize: 14) :
-                                    const TextStyle(color: Colors.black,),
+                                  title: Text(
+                                    userModel.dob == null ||
+                                            userModel.dob!.isEmpty
+                                        ? 'No Date of birth added'
+                                        : 'Date of birth: ${userModel.dob!}',
+                                    style: userModel.dob == null ||
+                                            userModel.dob!.isEmpty
+                                        ? const TextStyle(
+                                            color: Colors.grey, fontSize: 14)
+                                        : const TextStyle(
+                                            color: Colors.black,
+                                          ),
                                   ),
                                   trailing: IconButton(
-                                    icon: const Icon(Icons.edit,color: Colors.blueAccent,),
-                                    onPressed: (){
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: Colors.blueAccent,
+                                    ),
+                                    onPressed: () {
                                       showInputDialog(
                                           title: 'Date of birth',
                                           value: userModel.dob,
                                           onSaved: (value) {
                                             authController.updateProfile(
                                                 AuthService.user!.uid,
-                                                {'dob' : value});
+                                                {'dob': value});
                                           });
                                     },
                                   ),
                                 ),
                                 ListTile(
-                                  title: Text(userModel.gender == null ||  userModel.gender!.isEmpty ?
-                                  'No gender added' : 'Gender: ${userModel.gender!}',
-                                    style: userModel.gender == null ||  userModel.gender!.isEmpty ?
-                                    const TextStyle(color: Colors.grey,fontSize: 14) :
-                                    const TextStyle(color: Colors.black,),
+                                  title: Text(
+                                    userModel.gender == null ||
+                                            userModel.gender!.isEmpty
+                                        ? 'No gender added'
+                                        : 'Gender: ${userModel.gender!}',
+                                    style: userModel.gender == null ||
+                                            userModel.gender!.isEmpty
+                                        ? const TextStyle(
+                                            color: Colors.grey, fontSize: 14)
+                                        : const TextStyle(
+                                            color: Colors.black,
+                                          ),
                                   ),
                                   trailing: IconButton(
-                                    icon: const Icon(Icons.edit,color: Colors.blueAccent,),
-                                    onPressed: (){
+                                    icon: const Icon(
+                                      Icons.edit,
+                                      color: Colors.blueAccent,
+                                    ),
+                                    onPressed: () {
                                       showInputDialog(
                                           title: 'Gender',
                                           value: userModel.gender,
                                           onSaved: (value) {
                                             authController.updateProfile(
                                                 AuthService.user!.uid,
-                                                {'gender' : value});
+                                                {'gender': value});
                                           });
                                     },
                                   ),
                                 ),
-                                const SizedBox(height: 50,),
+                                const SizedBox(
+                                  height: 50,
+                                ),
                                 SizedBox(
                                   height: 36,
                                   child: Form(
@@ -225,33 +297,42 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         showInputDialogPass(
                                             title: 'New Password ',
                                             onSaved: (value) async {
-                                              EasyLoading.show(status: 'Please Wait....',dismissOnTap: false);
+                                              EasyLoading.show(
+                                                  status: 'Please Wait....',
+                                                  dismissOnTap: false);
                                               try {
-                                                await AuthService.changePassword(value);
+                                                await AuthService
+                                                    .changePassword(value);
                                                 EasyLoading.dismiss();
                                                 //FirebaseAuth.instance.signOut();
-                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
                                                   const SnackBar(
-                                                    backgroundColor: Colors.green,
+                                                    backgroundColor:
+                                                        Colors.green,
                                                     content: Text(
                                                       'Your Password has been Changed.',
-                                                      style: TextStyle(fontSize: 18.0),
+                                                      style: TextStyle(
+                                                          fontSize: 18.0),
                                                     ),
                                                   ),
                                                 );
                                               } catch (e) {
                                                 EasyLoading.dismiss();
-                                                print('Request Failed!. Please Try Again...');
-                                                showMessage(context, 'Request Failed!. Please Try Again...');
+                                                print(
+                                                    'Request Failed!. Please Try Again...');
+                                                showMessage(context,
+                                                    'Request Failed!. Please Try Again...');
                                               }
-                                            }
-                                        );
+                                            });
                                       },
                                       child: const Text('Change Password'),
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 20,),
+                                const SizedBox(
+                                  height: 20,
+                                ),
                               ],
                             ),
                           ),
@@ -262,7 +343,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ],
               );
             }
-            if(snapshot.hasError) {
+            if (snapshot.hasError) {
               return const Text('Failed to fetch Data');
             }
             return const CircularProgressIndicator();
@@ -275,15 +356,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void _getImage() async {
     final xFile = await ImagePicker()
         .pickImage(source: ImageSource.gallery, imageQuality: 75);
-    if(xFile != null) {
+    if (xFile != null) {
       setState(() {
         _progressBar = true;
       });
       EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
       try {
-
         final downloadUrl = await authController.updateImage(xFile);
-        await authController.updateProfile(AuthService.user!.uid, {'image' : downloadUrl});
+        await authController
+            .updateProfile(AuthService.user!.uid, {'image': downloadUrl});
         await AuthService.updatePhotoUrl(downloadUrl);
         EasyLoading.dismiss();
         setState(() {
@@ -300,7 +381,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
           ),
         );
-      }on FirebaseAuthException catch(e) {
+      } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.orange[900],
@@ -319,88 +400,92 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     }
   }
 
-
-  showInputDialog({
-    required String title,
-    String? value,
-    required Function(String) onSaved}) {
+  showInputDialog(
+      {required String title,
+      String? value,
+      required Function(String) onSaved}) {
     textController.text = value ?? '';
-    showDialog(context: context, builder: (context) => AlertDialog(
-      title: Text(title),
-      content: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          controller: textController,
-          decoration: InputDecoration(
-              hintText: 'Enter $title'
-          ),
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context),
-          child: const Text('CANCEL'),
-        ),
-        TextButton(
-          onPressed: () {
-            onSaved(textController.text);
-            Navigator.pop(context);
-          },
-          child: const Text('UPDATE'),
-        ),
-      ],
-    ));
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(title),
+              content: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: textController,
+                  decoration: InputDecoration(hintText: 'Enter $title'),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('CANCEL'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    onSaved(textController.text);
+                    Navigator.pop(context);
+                  },
+                  child: const Text('UPDATE'),
+                ),
+              ],
+            ));
   }
 
-  showInputDialogPass({
-    required String title,
-    String? value,
-    required Function(String) onSaved}) {
+  showInputDialogPass(
+      {required String title,
+      String? value,
+      required Function(String) onSaved}) {
     textController.text = value ?? '';
-    showDialog(context: context, builder: (context) => AlertDialog(
-      title: Text(title),
-      content: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
-          key: _formKey,
-          child: TextFormField(
-            autofocus: false,
-            obscureText: true,
-            controller: textController,
-            decoration: InputDecoration(
-              hintText: 'Enter $title',
-              errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 15),
-            ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please Enter Password';
-              }
-              if (value.length < 6) {
-                return 'Password min 6 character';
-              }
-              return null;
-            },
-          ),
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: () => Navigator.pop(context),
-          child: const Text('CANCEL'),
-        ),
-        TextButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              onSaved(textController.text);
-              Navigator.pop(context);
-            }
-          },
-          child: const Text('UPDATE'),
-        ),
-      ],
-    ));
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(title),
+              content: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    autofocus: false,
+                    obscureText: true,
+                    controller: textController,
+                    decoration: InputDecoration(
+                      hintText: 'Enter $title',
+                      errorStyle: const TextStyle(
+                          color: Colors.redAccent, fontSize: 15),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please Enter Password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password min 6 character';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('CANCEL'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      onSaved(textController.text);
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: const Text('UPDATE'),
+                ),
+              ],
+            ));
   }
 
   void verifyEmail() async {
-    if(AuthService.user != null && !AuthService.user!.emailVerified){
+    if (AuthService.user != null && !AuthService.user!.emailVerified) {
       EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
       try {
         await AuthService.user!.sendEmailVerification();
@@ -416,7 +501,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             ),
           ),
         );
-      }on FirebaseAuthException catch(e) {
+      } on FirebaseAuthException catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.orange[900],
@@ -429,11 +514,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         EasyLoading.dismiss();
         print('Error: ------> ${e.message!}');
       }
-
     }
   }
-
-
 }
-
-

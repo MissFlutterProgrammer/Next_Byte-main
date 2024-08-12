@@ -1,4 +1,3 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -9,11 +8,9 @@ import 'package:next_byte/auth/login_screen.dart';
 import 'package:next_byte/auth/signup_screen.dart';
 import 'package:next_byte/controllers/auth_controller.dart';
 import 'package:next_byte/views/home/home_screen.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:next_byte/views/splash_screen.dart';
 import 'firebase_options.dart';
-import 'views/comments/comment_screen.dart';
 import 'views/profile/edit_profile_screen.dart';
 import 'views/profile/profile_screen.dart';
 
@@ -31,7 +28,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -42,34 +38,44 @@ class MyApp extends StatelessWidget {
       ),
       builder: EasyLoading.init(),
       //home: const SplashScreen(),
-      unknownRoute: GetPage(name: '/404', page: () => const SplashScreen()),
+      unknownRoute: GetPage(
+        name: '/404',
+        page: () => const SplashScreen(),
+      ),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/',
+        GetPage(
+          name: '/',
           page: () => const SplashScreen(),
           transition: Transition.zoom,
         ),
-        GetPage(name: '/auth',
-            page: () => const LauncherScreen(),
-            transition: Transition.zoom,
+        GetPage(
+          name: '/auth',
+          page: () => const LauncherScreen(),
+          transition: Transition.zoom,
         ),
-        GetPage(name: '/login',
-            page: () => const LoginScreen(),
-            transition: Transition.zoom,
+        GetPage(
+          name: '/login',
+          page: () => const LoginScreen(),
+          transition: Transition.zoom,
         ),
-        GetPage(name: '/signup',
-            page: () => const SignupScreen(),
-            transition: Transition.zoom,
+        GetPage(
+          name: '/signup',
+          page: () => const SignupScreen(),
+          transition: Transition.zoom,
         ),
-        GetPage(name: '/home',
-            page: () => const HomeScreen(),
+        GetPage(
+          name: '/home',
+          page: () => const HomeScreen(),
           transition: Transition.rightToLeft,
         ),
-        GetPage(name: '/profile',
+        GetPage(
+          name: '/profile',
           page: () => const ProfileScreen(),
           transition: Transition.rightToLeft,
         ),
-        GetPage(name: '/edit_profile',
+        GetPage(
+          name: '/edit_profile',
           page: () => const EditProfileScreen(),
           transition: Transition.rightToLeft,
         ),
@@ -77,4 +83,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
