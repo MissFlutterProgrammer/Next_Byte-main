@@ -530,7 +530,10 @@ class _SignupScreenState extends State<SignupScreen> {
           textColor: Colors.white,
         );
       } else {
-        EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
+        EasyLoading.show(
+          status: 'Please Wait....',
+          dismissOnTap: false,
+        );
         try {
           if (await AuthService.register(
               emailController.text, passwordController.text)) {
@@ -582,8 +585,10 @@ class _SignupScreenState extends State<SignupScreen> {
         } on FirebaseAuthException catch (e) {
           print('Error: ------> ${e.message!}');
           EasyLoading.dismiss();
-          Get.snackbar("Account Creation Unsuccessful",
-              "Error occurred while creating account. Try Again.");
+          Get.snackbar(
+            "Account Creation Unsuccessful",
+            "Error occurred while creating account. Try Again.",
+          );
           Fluttertoast.showToast(
             msg: e.message!,
             //msg: 'The email address is already in use by another account.',

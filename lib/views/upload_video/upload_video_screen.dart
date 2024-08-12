@@ -86,7 +86,9 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Camera',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ],

@@ -352,9 +352,12 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
                                               } catch (e) {
                                                 EasyLoading.dismiss();
                                                 print(
-                                                    'Request Failed!. Please Try Again...');
-                                                showMessage(context,
-                                                    'Request Failed!. Please Try Again...');
+                                                  'Request Failed!. Please Try Again...',
+                                                );
+                                                showMessage(
+                                                  context,
+                                                  'Request Failed!. Please Try Again...',
+                                                );
                                               }
                                             });
                                       },
@@ -501,7 +504,9 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
             backgroundColor: Colors.orange[900],
             content: Text(
               e.message!,
-              style: const TextStyle(fontSize: 18.0),
+              style: const TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
         );

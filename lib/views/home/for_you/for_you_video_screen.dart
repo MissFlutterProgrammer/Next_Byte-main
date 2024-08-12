@@ -160,9 +160,7 @@ class ForYouVideoScreen extends StatelessWidget {
                                         size: 18,
                                         color: Colors.white,
                                       ),
-                                      const SizedBox(
-                                        width: 2,
-                                      ),
+                                      const SizedBox(width: 2),
                                       Wrap(
                                         children: [
                                           Text(

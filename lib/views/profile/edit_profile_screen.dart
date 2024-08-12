@@ -342,9 +342,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
+                                const SizedBox(height: 20),
                               ],
                             ),
                           ),
@@ -374,7 +372,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       setState(() {
         _progressBar = true;
       });
-      EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
+      EasyLoading.show(
+        status: 'Please Wait....',
+        dismissOnTap: false,
+      );
       try {
         final downloadUrl = await authController.updateImage(xFile);
         await authController.updateProfile(
@@ -533,7 +534,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             backgroundColor: Colors.orange[900],
             content: Text(
               e.message!,
-              style: const TextStyle(fontSize: 18.0),
+              style: const TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
         );
