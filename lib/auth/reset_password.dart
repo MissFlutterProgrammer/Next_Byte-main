@@ -45,7 +45,9 @@ class _ResetPasswordState extends State<ResetPassword> {
             margin: const EdgeInsets.only(top: 20.0),
             child: const Text(
               'Reset Link will be sent to your email id !',
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
             ),
           ),
           Expanded(
@@ -102,7 +104,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                             ),
                             child: const Text(
                               'Send Email',
-                              style: TextStyle(fontSize: 18.0),
+                              style: TextStyle(
+                                fontSize: 18.0,
+                              ),
                             ),
                           ),
                         ),
@@ -115,7 +119,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                           },
                           child: const Text(
                             'Login',
-                            style: TextStyle(fontSize: 14.0),
+                            style: TextStyle(
+                              fontSize: 14.0,
+                            ),
                           ),
                         ),
                       ],
@@ -156,7 +162,9 @@ class _ResetPasswordState extends State<ResetPassword> {
           backgroundColor: Colors.green,
           content: Text(
             'Password Reset Email has been sent !',
-            style: TextStyle(fontSize: 18.0),
+            style: TextStyle(
+              fontSize: 18.0,
+            ),
           ),
         ),
       );
@@ -170,7 +178,9 @@ class _ResetPasswordState extends State<ResetPassword> {
             backgroundColor: Colors.orangeAccent,
             content: Text(
               'No user found for that email.',
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
         );

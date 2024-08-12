@@ -33,37 +33,38 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           PopupMenuButton(
-              itemBuilder: (context) => [
-                    PopupMenuItem(
-                      onTap: () async {
-                        Navigator.of(context);
-                        await Future.delayed(Duration.zero);
-                        //Get.to(() => const ProfileScreen());
-                        Get.toNamed('/profile');
-                      },
-                      child: const Text('Profile'),
-                    ),
-                    PopupMenuItem(
-                      onTap: () async {
-                        Navigator.of(context);
-                        await Future.delayed(Duration.zero);
-                        //Get.to(() => const HomeScreen());
-                        Get.offAllNamed('/Settings');
-                      },
-                      child: const Text('Settings'),
-                    ),
-                    PopupMenuItem(
-                      onTap: () async {
-                        Navigator.of(context);
-                        await Future.delayed(Duration.zero);
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                onTap: () async {
+                  Navigator.of(context);
+                  await Future.delayed(Duration.zero);
+                  //Get.to(() => const ProfileScreen());
+                  Get.toNamed('/profile');
+                },
+                child: const Text('Profile'),
+              ),
+              PopupMenuItem(
+                onTap: () async {
+                  Navigator.of(context);
+                  await Future.delayed(Duration.zero);
+                  //Get.to(() => const HomeScreen());
+                  Get.offAllNamed('/Settings');
+                },
+                child: const Text('Settings'),
+              ),
+              PopupMenuItem(
+                onTap: () async {
+                  Navigator.of(context);
+                  await Future.delayed(Duration.zero);
 
-                        AuthService.logout().then(
-                          (value) => Get.offAllNamed('/auth'),
-                        );
-                      },
-                      child: const Text('Logout'),
-                    ),
-                  ]),
+                  AuthService.logout().then(
+                    (value) => Get.offAllNamed('/auth'),
+                  );
+                },
+                child: const Text('Logout'),
+              ),
+            ],
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

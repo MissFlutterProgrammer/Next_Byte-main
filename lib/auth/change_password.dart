@@ -56,8 +56,10 @@ class _ChangePasswordState extends State<ChangePassword> {
                     hintText: 'Enter New Password',
                     labelStyle: TextStyle(fontSize: 20.0),
                     border: OutlineInputBorder(),
-                    errorStyle:
-                        TextStyle(color: Colors.redAccent, fontSize: 15),
+                    errorStyle: TextStyle(
+                      color: Colors.redAccent,
+                      fontSize: 15,
+                    ),
                   ),
                   controller: newPasswordController,
                   validator: (value) {
@@ -80,7 +82,9 @@ class _ChangePasswordState extends State<ChangePassword> {
                 },
                 child: const Text(
                   'Change Password',
-                  style: TextStyle(fontSize: 18.0),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
                 ),
               ),
             ],
@@ -100,7 +104,9 @@ class _ChangePasswordState extends State<ChangePassword> {
           backgroundColor: Colors.green,
           content: Text(
             'Your Password has been Changed.',
-            style: TextStyle(fontSize: 18.0),
+            style: TextStyle(
+              fontSize: 18.0,
+            ),
           ),
         ),
       );

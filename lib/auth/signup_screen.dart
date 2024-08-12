@@ -474,9 +474,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 5),
                         const Text(
                           'Create New Account',
                           style: TextStyle(
@@ -573,8 +571,10 @@ class _SignupScreenState extends State<SignupScreen> {
             if (!mounted) return;
             authController.addUser(userModel).then((value) {
               EasyLoading.dismiss();
-              Get.snackbar("Account Created",
-                  "Congratulations!, your account has been created.");
+              Get.snackbar(
+                "Account Created",
+                "Congratulations!, your account has been created.",
+              );
               //Get.offAll(() => const LauncherScreen());
               Get.offAllNamed('/auth');
             });

@@ -68,9 +68,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   Column(
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       Card(
                         color: Colors.white70,
                         elevation: 10,
@@ -102,11 +100,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               bottom: 35,
                               right: 80,
                               child: IconButton(
-                                  onPressed: _getImage,
-                                  icon: const Icon(
-                                    Icons.add_a_photo,
-                                    size: 40,
-                                  )),
+                                onPressed: _getImage,
+                                icon: const Icon(
+                                  Icons.add_a_photo,
+                                  size: 40,
+                                ),
+                              ),
                             ),
                             if (_progressBar)
                               Positioned(
@@ -127,39 +126,41 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             child: Column(
                               children: [
                                 ListTile(
-                                    title: Text(
-                                      userModel.email,
-                                      style:
-                                          const TextStyle(color: Colors.black),
+                                  title: Text(
+                                    userModel.email,
+                                    style: const TextStyle(
+                                      color: Colors.black,
                                     ),
-                                    trailing: AuthService.user!.emailVerified
-                                        ? const Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(
-                                                'Verified',
-                                                style: TextStyle(
-                                                    color: Colors.green),
-                                              ),
-                                              SizedBox(
-                                                width: 5,
-                                              ),
-                                              Icon(
-                                                Icons.verified_user,
+                                  ),
+                                  trailing: AuthService.user!.emailVerified
+                                      ? const Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Verified',
+                                              style: TextStyle(
                                                 color: Colors.green,
                                               ),
-                                            ],
-                                          )
-                                        : TextButton(
-                                            onPressed: () {
-                                              verifyEmail();
-                                            },
-                                            child: const Text(
-                                              '-> Verify',
-                                              style: TextStyle(
-                                                  color: Colors.blueAccent),
                                             ),
-                                          )),
+                                            SizedBox(width: 5),
+                                            Icon(
+                                              Icons.verified_user,
+                                              color: Colors.green,
+                                            ),
+                                          ],
+                                        )
+                                      : TextButton(
+                                          onPressed: () {
+                                            verifyEmail();
+                                          },
+                                          child: const Text(
+                                            '-> Verify',
+                                            style: TextStyle(
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                        ),
+                                ),
                                 ListTile(
                                   title: Text(
                                     userModel.name == null ||
@@ -169,7 +170,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     style: userModel.name == null ||
                                             userModel.name!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -202,7 +205,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     style: userModel.mobile == null ||
                                             userModel.mobile!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -300,8 +305,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             title: 'New Password ',
                                             onSaved: (value) async {
                                               EasyLoading.show(
-                                                  status: 'Please Wait....',
-                                                  dismissOnTap: false);
+                                                status: 'Please Wait....',
+                                                dismissOnTap: false,
+                                              );
                                               try {
                                                 await AuthService
                                                     .changePassword(value);
@@ -315,7 +321,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                                     content: Text(
                                                       'Your Password has been Changed.',
                                                       style: TextStyle(
-                                                          fontSize: 18.0),
+                                                        fontSize: 18.0,
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -370,8 +377,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
       try {
         final downloadUrl = await authController.updateImage(xFile);
-        await authController
-            .updateProfile(AuthService.user!.uid, {'image': downloadUrl});
+        await authController.updateProfile(
+          AuthService.user!.uid,
+          {'image': downloadUrl},
+        );
         await AuthService.updatePhotoUrl(downloadUrl);
         EasyLoading.dismiss();
         setState(() {
@@ -384,7 +393,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             backgroundColor: Colors.green,
             content: Text(
               'Profile picture updated.',
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
         );
@@ -394,7 +405,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             backgroundColor: Colors.orange[900],
             content: Text(
               e.message!,
-              style: const TextStyle(fontSize: 18.0),
+              style: const TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
         );

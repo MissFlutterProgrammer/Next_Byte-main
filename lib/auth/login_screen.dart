@@ -218,13 +218,14 @@ class _LoginScreenState extends State<LoginScreen> {
           authenticate();
         },
         style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white38,
-            backgroundColor: Colors.white,
-            padding: const EdgeInsets.all(15.0),
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            )),
+          foregroundColor: Colors.white38,
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.all(15.0),
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
         child: const Text(
           'LOGIN',
           style: TextStyle(
@@ -323,7 +324,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       email: AuthService.user!.email!,
                       mobile: credential.user!.phoneNumber,
                       userCreationTime: Timestamp.fromDate(
-                          credential.user!.metadata.creationTime!),
+                        credential.user!.metadata.creationTime!,
+                      ),
                     );
                     await authController.addUser(userModel);
                     EasyLoading.dismiss();
@@ -448,7 +450,10 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.all(8.0),
         child: Text(
           'Next Digit',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
@@ -480,7 +485,9 @@ class _LoginScreenState extends State<LoginScreen> {
             backgroundColor: Colors.orange[900],
             content: const Text(
               'Incorrect email or password.',
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
         );
