@@ -15,15 +15,16 @@ class VideoController extends GetxController {
   void onInit() {
     super.onInit();
     _videoList.bindStream(
-        firestore.collection('Videos').snapshots().map((QuerySnapshot query) {
-      List<VideoUploadModel> retVal = [];
-      for (var element in query.docs) {
-        retVal.add(
-          VideoUploadModel.fromSnap(element),
-        );
-      }
-      return retVal;
-    }));
+      firestore.collection('Videos').snapshots().map((QuerySnapshot query) {
+        List<VideoUploadModel> retVal = [];
+        for (var element in query.docs) {
+          retVal.add(
+            VideoUploadModel.fromSnap(element),
+          );
+        }
+        return retVal;
+      }),
+    );
   }
 
   likeVideo(String videoID) async {

@@ -69,24 +69,26 @@ class ForYouVideoScreen extends StatelessWidget {
       child: Column(
         children: [
           Container(
-              padding: const EdgeInsets.all(8),
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Colors.grey,
-                      Colors.white,
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(25)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(25),
-                child: Image(
-                  image: NetworkImage(profilePhoto),
-                  fit: BoxFit.cover,
-                ),
-              ))
+            padding: const EdgeInsets.all(8),
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [
+                  Colors.grey,
+                  Colors.white,
+                ],
+              ),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: Image(
+                image: NetworkImage(profilePhoto),
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -105,7 +107,9 @@ class ForYouVideoScreen extends StatelessWidget {
             final data = videoController.videoList[index];
             return Stack(
               children: [
-                ItemVideo(videoUrl: data.videoUrl.toString()),
+                ItemVideo(
+                  videoUrl: data.videoUrl.toString(),
+                ),
                 Column(
                   children: [
                     const SizedBox(
@@ -186,14 +190,13 @@ class ForYouVideoScreen extends StatelessWidget {
                                 buildProfile(
                                   data.userProfileImage.toString(),
                                 ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
+                                const SizedBox(height: 2),
                                 Column(
                                   children: [
                                     InkWell(
-                                      onTap: () => videoController
-                                          .likeVideo(data.videoID.toString()),
+                                      onTap: () => videoController.likeVideo(
+                                        data.videoID.toString(),
+                                      ),
                                       child: Icon(
                                         Icons.favorite,
                                         size: 40,
@@ -258,7 +261,8 @@ class ForYouVideoScreen extends StatelessWidget {
                                 ),
                                 CircleAnimation(
                                   child: buildMusicAlbum(
-                                      data.userProfileImage.toString()),
+                                    data.userProfileImage.toString(),
+                                  ),
                                 ),
                               ],
                             ),

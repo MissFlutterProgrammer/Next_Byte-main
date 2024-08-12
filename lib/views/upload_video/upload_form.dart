@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:next_byte/utils/constants.dart';
@@ -66,9 +65,7 @@ class _UploadFormState extends State<UploadForm> {
                   videoPlayerController!,
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               showProgressBar == true
                   ? const SimpleCircularProgressBar(
                       progressColors: [
@@ -113,9 +110,7 @@ class _UploadFormState extends State<UploadForm> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 5),
                         Container(
                           color: Colors.white30,
                           alignment: Alignment.centerLeft,
@@ -157,13 +152,14 @@ class _UploadFormState extends State<UploadForm> {
                               _saveVideoInfo();
                             },
                             style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor: Colors.blueAccent,
-                                padding: const EdgeInsets.all(15.0),
-                                elevation: 5.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                )),
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.blueAccent,
+                              padding: const EdgeInsets.all(15.0),
+                              elevation: 5.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                            ),
                             child: const Text(
                               'Upload Now',
                               style: TextStyle(
@@ -186,13 +182,14 @@ class _UploadFormState extends State<UploadForm> {
                               //
                             },
                             style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.black,
-                                backgroundColor: Colors.redAccent,
-                                padding: const EdgeInsets.all(15.0),
-                                elevation: 5.0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                )),
+                              foregroundColor: Colors.black,
+                              backgroundColor: Colors.redAccent,
+                              padding: const EdgeInsets.all(15.0),
+                              elevation: 5.0,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                            ),
                             child: const Text(
                               'Cancel',
                               style: TextStyle(
@@ -205,9 +202,7 @@ class _UploadFormState extends State<UploadForm> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
+                        const SizedBox(height: 5),
                       ],
                     ),
             ],

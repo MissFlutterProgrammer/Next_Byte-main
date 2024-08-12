@@ -21,8 +21,7 @@ class DonorModel {
     return map;
   }
 
-  factory DonorModel.fromMap(Map<String, dynamic> map) =>
-      DonorModel(
+  factory DonorModel.fromMap(Map<String, dynamic> map) => DonorModel(
         id: map[tableDonorColId],
         name: map[tableDonorColName],
       );
@@ -31,24 +30,19 @@ class DonorModel {
   String toString() {
     return 'DonorModel{id: $id, name: $name}';
   }
-
 }
 
+final bgList = <String>['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
 
-  final bgList = <String>['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+final genderList = <String>['Male', 'Female', 'Others'];
 
-
-  final genderList = <String>['Male', 'Female', 'Others'];
-
-  final areaList = <String>[
-    'Dhaka',
-    'Rangpur',
-    'Khulna',
-    'Chattogram',
-    'Barishal',
-    'Rajshahi',
-    'Sylhet',
-    'Mymensingh'
-  ];
-
-
+final areaList = <String>[
+  'Dhaka',
+  'Rangpur',
+  'Khulna',
+  'Chattogram',
+  'Barishal',
+  'Rajshahi',
+  'Sylhet',
+  'Mymensingh'
+];

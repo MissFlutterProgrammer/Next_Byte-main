@@ -233,7 +233,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     style: userModel.dob == null ||
                                             userModel.dob!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -264,7 +266,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     style: userModel.gender == null ||
                                             userModel.gender!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -286,9 +290,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     },
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 50,
-                                ),
+                                const SizedBox(height: 50),
                                 SizedBox(
                                   height: 36,
                                   child: Form(
@@ -320,9 +322,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               } catch (e) {
                                                 EasyLoading.dismiss();
                                                 print(
-                                                    'Request Failed!. Please Try Again...');
-                                                showMessage(context,
-                                                    'Request Failed!. Please Try Again...');
+                                                  'Request Failed!. Please Try Again...',
+                                                );
+                                                showMessage(
+                                                  context,
+                                                  'Request Failed!. Please Try Again...',
+                                                );
                                               }
                                             });
                                       },
@@ -354,8 +359,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   void _getImage() async {
-    final xFile = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 75);
+    final xFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 75,
+    );
     if (xFile != null) {
       setState(() {
         _progressBar = true;
@@ -406,30 +413,33 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       required Function(String) onSaved}) {
     textController.text = value ?? '';
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(title),
-              content: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: textController,
-                  decoration: InputDecoration(hintText: 'Enter $title'),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('CANCEL'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    onSaved(textController.text);
-                    Navigator.pop(context);
-                  },
-                  child: const Text('UPDATE'),
-                ),
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: textController,
+            decoration: InputDecoration(
+              hintText: 'Enter $title',
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('CANCEL'),
+          ),
+          TextButton(
+            onPressed: () {
+              onSaved(textController.text);
+              Navigator.pop(context);
+            },
+            child: const Text('UPDATE'),
+          ),
+        ],
+      ),
+    );
   }
 
   showInputDialogPass(
@@ -438,50 +448,53 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       required Function(String) onSaved}) {
     textController.text = value ?? '';
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(title),
-              content: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    autofocus: false,
-                    obscureText: true,
-                    controller: textController,
-                    decoration: InputDecoration(
-                      hintText: 'Enter $title',
-                      errorStyle: const TextStyle(
-                          color: Colors.redAccent, fontSize: 15),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please Enter Password';
-                      }
-                      if (value.length < 6) {
-                        return 'Password min 6 character';
-                      }
-                      return null;
-                    },
-                  ),
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Form(
+            key: _formKey,
+            child: TextFormField(
+              autofocus: false,
+              obscureText: true,
+              controller: textController,
+              decoration: InputDecoration(
+                hintText: 'Enter $title',
+                errorStyle: const TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 15,
                 ),
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('CANCEL'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      onSaved(textController.text);
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text('UPDATE'),
-                ),
-              ],
-            ));
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please Enter Password';
+                }
+                if (value.length < 6) {
+                  return 'Password min 6 character';
+                }
+                return null;
+              },
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('CANCEL'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                onSaved(textController.text);
+                Navigator.pop(context);
+              }
+            },
+            child: const Text('UPDATE'),
+          ),
+        ],
+      ),
+    );
   }
 
   void verifyEmail() async {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:next_byte/auth/firebase_auth.dart';
-
 import '../following/followings_video_screen.dart';
 import '../profile/profile_screen.dart';
 import '../search/search_screen.dart';

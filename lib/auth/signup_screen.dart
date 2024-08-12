@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -57,9 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
           Card(
             //elevation: 10,
             child: _imagePath == null
@@ -90,32 +87,30 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
             //Image.network(_imagePath!,height: 160, width: 150,fit: BoxFit.cover,),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton.icon(
-                  onPressed: () {
-                    _imageSource = ImageSource.camera;
-                    //authController.getImageFromGallery();
-                    _getImage();
-                  },
-                  icon: const Icon(Icons.camera),
-                  label: const Text('Camera')),
+                onPressed: () {
+                  _imageSource = ImageSource.camera;
+                  //authController.getImageFromGallery();
+                  _getImage();
+                },
+                icon: const Icon(Icons.camera),
+                label: const Text('Camera'),
+              ),
               TextButton.icon(
-                  onPressed: () {
-                    _imageSource = ImageSource.gallery;
-                    _getImage();
-                  },
-                  icon: const Icon(Icons.photo),
-                  label: const Text('Gallery')),
+                onPressed: () {
+                  _imageSource = ImageSource.gallery;
+                  _getImage();
+                },
+                icon: const Icon(Icons.photo),
+                label: const Text('Gallery'),
+              ),
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
+          const SizedBox(height: 15),
         ],
       ),
     );
@@ -165,12 +160,15 @@ class _SignupScreenState extends State<SignupScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-            onPressed: _selectDate,
-            child: const Text(
-              'Select Date of Birth: ',
-              style: TextStyle(fontSize: 16),
-            )),
-        Text(_dob == null ? 'No Date Selected' : _dob!)
+          onPressed: _selectDate,
+          child: const Text(
+            'Select Date of Birth: ',
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
+        Text(
+          _dob == null ? 'No Date Selected' : _dob!,
+        )
       ],
     );
   }
@@ -346,7 +344,8 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               suffixIcon: IconButton(
                 icon: Icon(
-                    isObscureText ? Icons.visibility_off : Icons.visibility),
+                  isObscureText ? Icons.visibility_off : Icons.visibility,
+                ),
                 onPressed: () {
                   setState(() {
                     isObscureText = !isObscureText;
@@ -372,13 +371,14 @@ class _SignupScreenState extends State<SignupScreen> {
           print('Signup Button Pressed');
         },
         style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white38,
-            backgroundColor: Colors.white,
-            padding: const EdgeInsets.all(15.0),
-            elevation: 5.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            )),
+          foregroundColor: Colors.white38,
+          backgroundColor: Colors.white,
+          padding: const EdgeInsets.all(15.0),
+          elevation: 5.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
         child: const Text(
           'SIGN UP',
           style: TextStyle(

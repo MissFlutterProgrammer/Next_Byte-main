@@ -87,7 +87,9 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
           builder: (context, snapshot) {
             //print('--------->    ${snapshot.data?.data()}');
             if (snapshot.hasError) {
-              return const Center(child: Text('Firebase load fail'));
+              return const Center(
+                child: Text('Firebase load fail'),
+              );
             }
             if (snapshot.connectionState == ConnectionState.done &&
                 snapshot.hasData) {
@@ -97,9 +99,7 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
                 children: [
                   Column(
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       Card(
                         color: Colors.white70,
                         elevation: 10,
@@ -344,7 +344,8 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
                                                     content: Text(
                                                       'Your Password has been Changed.',
                                                       style: TextStyle(
-                                                          fontSize: 18.0),
+                                                        fontSize: 18.0,
+                                                      ),
                                                     ),
                                                   ),
                                                 );
@@ -398,30 +399,31 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
       required Function(String) onSaved}) {
     textController.text = value ?? '';
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(title),
-              content: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: textController,
-                  decoration: InputDecoration(hintText: 'Enter $title'),
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('CANCEL'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    onSaved(textController.text);
-                    Navigator.pop(context);
-                  },
-                  child: const Text('UPDATE'),
-                ),
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: textController,
+            decoration: InputDecoration(hintText: 'Enter $title'),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('CANCEL'),
+          ),
+          TextButton(
+            onPressed: () {
+              onSaved(textController.text);
+              Navigator.pop(context);
+            },
+            child: const Text('UPDATE'),
+          ),
+        ],
+      ),
+    );
   }
 
   showInputDialogPass(
@@ -430,52 +432,53 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
       required Function(String) onSaved}) {
     textController.text = value ?? '';
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(title),
-              content: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
-                  key: _formKey,
-                  child: TextFormField(
-                    autofocus: false,
-                    obscureText: true,
-                    controller: textController,
-                    decoration: InputDecoration(
-                      hintText: 'Enter $title',
-                      errorStyle: const TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 15,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please Enter Password';
-                      }
-                      if (value.length < 6) {
-                        return 'Password min 6 character';
-                      }
-                      return null;
-                    },
-                  ),
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Form(
+            key: _formKey,
+            child: TextFormField(
+              autofocus: false,
+              obscureText: true,
+              controller: textController,
+              decoration: InputDecoration(
+                hintText: 'Enter $title',
+                errorStyle: const TextStyle(
+                  color: Colors.redAccent,
+                  fontSize: 15,
                 ),
               ),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('CANCEL'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      onSaved(textController.text);
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text('UPDATE'),
-                ),
-              ],
-            ));
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please Enter Password';
+                }
+                if (value.length < 6) {
+                  return 'Password min 6 character';
+                }
+                return null;
+              },
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('CANCEL'),
+          ),
+          TextButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                onSaved(textController.text);
+                Navigator.pop(context);
+              }
+            },
+            child: const Text('UPDATE'),
+          ),
+        ],
+      ),
+    );
   }
 
   void verifyEmail() async {
@@ -514,24 +517,25 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
       required Function(String) onSaved}) {
     _genderGroupValue = value ?? '';
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(title),
-              content: _buildSelectGender(),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('CANCEL'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    onSaved(_genderGroupValue!);
-                    Navigator.pop(context);
-                  },
-                  child: const Text('UPDATE'),
-                ),
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: _buildSelectGender(),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('CANCEL'),
+          ),
+          TextButton(
+            onPressed: () {
+              onSaved(_genderGroupValue!);
+              Navigator.pop(context);
+            },
+            child: const Text('UPDATE'),
+          ),
+        ],
+      ),
+    );
   }
 
   void showInputDialogDoB(

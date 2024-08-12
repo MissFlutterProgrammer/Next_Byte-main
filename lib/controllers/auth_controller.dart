@@ -36,40 +36,30 @@ class AuthController extends GetxController {
     }
   }
 
-
   void getImageFromGallery() async {
     final selectedImage = await ImagePicker().pickImage(source: _imageSource);
-    if(selectedImage != null){
-
-      Get.snackbar(
-          'Profile Photo',
-          'Selected your profile photo'
-      );
-      _pickedImage = Rx<File?> (File(selectedImage.path));
+    if (selectedImage != null) {
+      Get.snackbar('Profile Photo', 'Selected your profile photo');
+      _pickedImage = Rx<File?>(File(selectedImage.path));
       //_imagePath = selectedImage.path;
     }
   }
+
   void getImageFromCamera() async {
-    final selectedImage = await ImagePicker().pickImage(source: ImageSource.camera);
-    if(selectedImage != null){
-
-      Get.snackbar(
-          'Profile Photo',
-          'Selected your profile photo'
-      );
-      _pickedImage = Rx<File?> (File(selectedImage.path));
-
+    final selectedImage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (selectedImage != null) {
+      Get.snackbar('Profile Photo', 'Selected your profile photo');
+      _pickedImage = Rx<File?>(File(selectedImage.path));
     }
   }
 
-
   //Create Account For New User
-  Future<void> addUser(UserModel userModel){
+  Future<void> addUser(UserModel userModel) {
     return DbHelper.addUser(userModel);
   }
 
   Future<bool> doseUserExist(String uid) => DbHelper.doseUserExist(uid);
-
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getUserById(String uid) =>
       DbHelper.getUserById(uid);
@@ -82,14 +72,12 @@ class AuthController extends GetxController {
 
   Future<String> updateImage(XFile xFile) async {
     final imageName = 'Image_${DateTime.now().millisecondsSinceEpoch}';
-    final photoRef = FirebaseStorage.instance.ref().child('Profile Pictures/$imageName');
+    final photoRef =
+        FirebaseStorage.instance.ref().child('Profile Pictures/$imageName');
     final task = photoRef.putFile(File(xFile.path));
     final snapshot = await task.whenComplete(() => null);
     return snapshot.ref.getDownloadURL();
   }
-
-
-
 
   Future<void> callContact(String number) async {
     final uri = Uri.parse('tel:$number');
@@ -148,8 +136,6 @@ class AuthController extends GetxController {
     }
   }
 
-
-
   /*Future<String> updateImage(File file) async {
     final imageName = 'Image_${DateTime.now().millisecondsSinceEpoch}';
     final photoRef = FirebaseStorage.instance.ref().child('Profile Pictures/$imageName');
@@ -157,5 +143,4 @@ class AuthController extends GetxController {
     final snapshot = await task.whenComplete(() => null);
     return snapshot.ref.getDownloadURL();
   }*/
-
 }

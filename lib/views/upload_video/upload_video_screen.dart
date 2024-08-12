@@ -60,9 +60,7 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 1.8,
                       child: ElevatedButton(

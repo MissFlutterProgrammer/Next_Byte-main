@@ -53,9 +53,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   SizedBox(
                     child: Column(
                       children: [
-                        const SizedBox(
-                          height: 8,
-                        ),
+                        const SizedBox(height: 8),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -75,9 +73,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             )
                           ],
                         ),
-                        const SizedBox(
-                          height: 8,
-                        ),
+                        const SizedBox(height: 8),
                         Text(
                           'user/@${controller.user['name']}',
                           style: const TextStyle(
@@ -86,9 +82,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        const SizedBox(height: 15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -164,9 +158,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
+                        const SizedBox(height: 15),
                         Card(
                           elevation: 5,
                           child: Container(
@@ -203,9 +195,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 25,
-                        ),
+                        const SizedBox(height: 25),
                         // video list
                         GridView.builder(
                           shrinkWrap: true,

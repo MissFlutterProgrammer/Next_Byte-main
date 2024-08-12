@@ -1,6 +1,6 @@
 name: next_byte
 description: Next_Byte A Video Sharing Flutter App. using Firebase and Firestore Video Hosting as Backend.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 version: 1.0.0+1
 
 environment:

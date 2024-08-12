@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:next_byte/utils/constants.dart';
-
 import '../auth/firebase_auth.dart';
 import '../models/comment_model.dart';
 

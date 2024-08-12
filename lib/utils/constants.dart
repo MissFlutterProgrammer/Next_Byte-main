@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-
 import '../controllers/auth_controller.dart';
 
 const kHintTextStyle = TextStyle(
@@ -39,7 +38,6 @@ final kBoxDecorationStyle1 = BoxDecoration(
   ],
 );
 
-
 // COLORS
 const backgroundColor = Colors.black;
 var buttonColor = Colors.red[400];
@@ -52,4 +50,3 @@ var firestore = FirebaseFirestore.instance;
 
 // CONTROLLER
 var authController = AuthController.instanceAuth;
-

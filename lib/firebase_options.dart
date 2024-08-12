@@ -70,8 +70,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '634713349445',
     projectId: 'next-byte',
     storageBucket: 'next-byte.appspot.com',
-    androidClientId: '634713349445-vemb5thkh46ps9d8124n6gfsentimjc8.apps.googleusercontent.com',
-    iosClientId: '634713349445-846fc1ei68cetdvmtobt70bkbf4f7f7n.apps.googleusercontent.com',
+    androidClientId:
+        '634713349445-vemb5thkh46ps9d8124n6gfsentimjc8.apps.googleusercontent.com',
+    iosClientId:
+        '634713349445-846fc1ei68cetdvmtobt70bkbf4f7f7n.apps.googleusercontent.com',
     iosBundleId: 'com.nextdigit.nextByte',
   );
 }

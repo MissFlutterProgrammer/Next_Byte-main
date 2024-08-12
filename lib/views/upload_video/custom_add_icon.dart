@@ -18,7 +18,6 @@ class CustomAddIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),
-
           Container(
             margin: const EdgeInsets.only(right: 12),
             width: 40,
@@ -27,7 +26,6 @@ class CustomAddIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.0),
             ),
           ),
-
           Center(
             child: Container(
               height: double.infinity,
@@ -43,7 +41,6 @@ class CustomAddIcon extends StatelessWidget {
               ),
             ),
           ),
-
         ],
       ),
     );

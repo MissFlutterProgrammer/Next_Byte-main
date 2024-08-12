@@ -145,7 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               suffixIcon: IconButton(
                 icon: Icon(
-                    isObscureText ? Icons.visibility_off : Icons.visibility),
+                  isObscureText ? Icons.visibility_off : Icons.visibility,
+                ),
                 onPressed: () {
                   setState(() {
                     isObscureText = !isObscureText;
@@ -184,7 +185,9 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Row(
         children: <Widget>[
           Theme(
-            data: ThemeData(unselectedWidgetColor: Colors.white),
+            data: ThemeData(
+              unselectedWidgetColor: Colors.white,
+            ),
             child: Checkbox(
               value: _rememberMe,
               checkColor: Colors.green,

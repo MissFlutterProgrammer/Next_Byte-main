@@ -62,11 +62,14 @@ class _ResetPasswordState extends State<ResetPassword> {
                         autofocus: false,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           labelText: 'Email',
                           prefixIcon: const Icon(Icons.email),
                           errorStyle: const TextStyle(
-                              color: Colors.redAccent, fontSize: 15),
+                            color: Colors.redAccent,
+                            fontSize: 15,
+                          ),
                         ),
                         controller: emailController,
                         validator: (value) {
@@ -79,9 +82,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         },
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -119,9 +120,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

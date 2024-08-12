@@ -61,9 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   Column(
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       Card(
                         color: Colors.white70,
                         elevation: 10,
@@ -110,27 +108,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Column(
                               children: [
                                 ListTile(
-                                    title: Text(
-                                      userModel.email,
-                                      style:
-                                          const TextStyle(color: Colors.black),
+                                  title: Text(
+                                    userModel.email,
+                                    style: const TextStyle(
+                                      color: Colors.black,
                                     ),
-                                    trailing: const Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          'Verified',
-                                          style: TextStyle(color: Colors.green),
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Icon(
-                                          Icons.verified_user,
+                                  ),
+                                  trailing: const Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Verified',
+                                        style: TextStyle(
                                           color: Colors.green,
                                         ),
-                                      ],
-                                    )),
+                                      ),
+                                      SizedBox(width: 5),
+                                      Icon(
+                                        Icons.verified_user,
+                                        color: Colors.green,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 ListTile(
                                   title: Text(
                                     userModel.name == null ||
@@ -140,7 +140,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     style: userModel.name == null ||
                                             userModel.name!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -155,7 +157,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     style: userModel.mobile == null ||
                                             userModel.mobile!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -170,7 +174,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     style: userModel.dob == null ||
                                             userModel.dob!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
@@ -185,15 +191,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     style: userModel.gender == null ||
                                             userModel.gender!.isEmpty
                                         ? const TextStyle(
-                                            color: Colors.grey, fontSize: 14)
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          )
                                         : const TextStyle(
                                             color: Colors.black,
                                           ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 50,
-                                ),
+                                const SizedBox(height: 50),
                                 SizedBox(
                                   height: 36,
                                   child: Form(
