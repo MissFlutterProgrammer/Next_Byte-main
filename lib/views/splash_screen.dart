@@ -38,9 +38,15 @@ class _SplashScreenState extends State<SplashScreen>
       duration: const Duration(seconds: 5),
     );
 
-    turns = CurvedAnimation(parent: controller, curve: Curves.linear);
+    turns = CurvedAnimation(
+      parent: controller,
+      curve: Curves.linear,
+    );
     deg = Tween(begin: 0.0, end: 45.0).animate(
-      CurvedAnimation(parent: controller, curve: Curves.easeInOutCubic),
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeInOutCubic,
+      ),
     );
   }
 

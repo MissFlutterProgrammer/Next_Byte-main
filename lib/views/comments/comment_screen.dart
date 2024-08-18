@@ -39,8 +39,9 @@ class CommentScreen extends StatelessWidget {
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundColor: Colors.white10,
-                              backgroundImage:
-                                  NetworkImage(comment.userProfileImage),
+                              backgroundImage: NetworkImage(
+                                comment.userProfileImage,
+                              ),
                             ),
                             title: Row(
                               children: [
@@ -77,9 +78,7 @@ class CommentScreen extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
+                                const SizedBox(width: 10),
                                 Text(
                                   '${comment.likes.length} likes',
                                   style: const TextStyle(

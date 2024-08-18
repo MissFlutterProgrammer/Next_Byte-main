@@ -12,8 +12,11 @@ import '../../../controllers/upload_controller.dart';
 class UploadForm extends StatefulWidget {
   final File videoFile;
   final String videoPath;
-  const UploadForm(
-      {super.key, required this.videoFile, required this.videoPath});
+  const UploadForm({
+    super.key,
+    required this.videoFile,
+    required this.videoPath,
+  });
 
   @override
   State<UploadForm> createState() => _UploadFormState();
@@ -144,7 +147,9 @@ class _UploadFormState extends State<UploadForm> {
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 16.0, horizontal: 8.0),
+                            vertical: 16.0,
+                            horizontal: 8.0,
+                          ),
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {

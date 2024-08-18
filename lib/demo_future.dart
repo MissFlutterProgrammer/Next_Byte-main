@@ -390,8 +390,10 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
         .pickImage(source: ImageSource.gallery, imageQuality: 75);
     if (xFile != null) {
       final downloadUrl = await authController.updateImage(xFile);
-      await authController
-          .updateProfile(AuthService.user!.uid, {'image': downloadUrl});
+      await authController.updateProfile(
+        AuthService.user!.uid,
+        {'image': downloadUrl},
+      );
       await AuthService.updatePhotoUrl(downloadUrl);
     }
   }
@@ -409,7 +411,9 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             controller: textController,
-            decoration: InputDecoration(hintText: 'Enter $title'),
+            decoration: InputDecoration(
+              hintText: 'Enter $title',
+            ),
           ),
         ),
         actions: [

@@ -38,7 +38,9 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                           foregroundColor: Colors.white,
                           textStyle: const TextStyle(fontSize: 20),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 4),
+                            horizontal: 40,
+                            vertical: 4,
+                          ),
                           elevation: 1,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -53,7 +55,9 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 'Gallery',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ],
@@ -71,7 +75,9 @@ class _UploadVideoScreenState extends State<UploadVideoScreen> {
                           foregroundColor: Colors.white,
                           textStyle: const TextStyle(fontSize: 20),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 4),
+                            horizontal: 40,
+                            vertical: 4,
+                          ),
                           elevation: 1,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),

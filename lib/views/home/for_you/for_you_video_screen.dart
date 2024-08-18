@@ -17,48 +17,52 @@ class ForYouVideoScreen extends StatelessWidget {
     return SizedBox(
       width: 64,
       height: 64,
-      child: Stack(children: [
-        Positioned(
-          left: 5,
-          child: Container(
-            width: 54,
-            height: 54,
-            padding: const EdgeInsets.all(1),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(27),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(27),
-              child: Image(
-                image: NetworkImage(profilePhoto),
-                fit: BoxFit.cover,
+      child: Stack(
+        children: [
+          Positioned(
+            left: 5,
+            child: Container(
+              width: 54,
+              height: 54,
+              padding: const EdgeInsets.all(1),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(27),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(27),
+                child: Image(
+                  image: NetworkImage(profilePhoto),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          left: 18,
-          bottom: 0,
-          child: Container(
-            height: 28,
-            width: 28,
-            decoration: const BoxDecoration(
-              color: Colors.pink,
-              borderRadius: BorderRadius.all(Radius.circular(14)),
-            ),
-            child: InkWell(
-              onTap: () {
-                print('----> Add Button Pressed.');
-                //Get.to(() => const LoginScreen());
-              },
-              child: const Icon(
-                Icons.add,
+          Positioned(
+            left: 18,
+            bottom: 0,
+            child: Container(
+              height: 28,
+              width: 28,
+              decoration: const BoxDecoration(
+                color: Colors.pink,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(14),
+                ),
+              ),
+              child: InkWell(
+                onTap: () {
+                  print('----> Add Button Pressed.');
+                  //Get.to(() => const LoginScreen());
+                },
+                child: const Icon(
+                  Icons.add,
+                ),
               ),
             ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 
@@ -112,9 +116,7 @@ class ForYouVideoScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    const SizedBox(
-                      height: 100,
-                    ),
+                    const SizedBox(height: 100),
                     Expanded(
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
