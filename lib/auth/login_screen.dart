@@ -469,7 +469,10 @@ class _LoginScreenState extends State<LoginScreen> {
         box.clear();
         box.delete('loginData');
       }
-      EasyLoading.show(status: 'Please Wait....', dismissOnTap: false);
+      EasyLoading.show(
+        status: 'Please Wait....',
+        dismissOnTap: false,
+      );
       try {
         final status = await AuthService.login(
             emailController.text, passwordController.text);

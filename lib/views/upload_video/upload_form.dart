@@ -219,8 +219,12 @@ class _UploadFormState extends State<UploadForm> {
 
   void _saveVideoInfo() async {
     if (formKey.currentState!.validate()) {
-      uploadVideoController.saveVideoInfo(songArtistController.text,
-          descriptionController.text, widget.videoPath, context);
+      uploadVideoController.saveVideoInfo(
+        songArtistController.text,
+        descriptionController.text,
+        widget.videoPath,
+        context,
+      );
     }
   }
 }

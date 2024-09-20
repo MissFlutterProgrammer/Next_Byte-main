@@ -33,7 +33,9 @@ class VideoController extends GetxController {
     var userID = AuthService.user!.uid;
     if ((doc.data()! as dynamic)['likesList'].contains(userID)) {
       await firestore.collection('Videos').doc(videoID).update({
-        'likesList': FieldValue.arrayRemove([userID]),
+        'likesList': FieldValue.arrayRemove(
+          [userID],
+        ),
       });
     } else {
       await firestore.collection('Videos').doc(videoID).update({

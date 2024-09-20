@@ -568,8 +568,9 @@ class _SignupScreenState extends State<SignupScreen> {
               mobile: mobileController.text,
               dob: _dob,
               gender: _genderGroupValue,
-              userCreationTime:
-                  Timestamp.fromDate(AuthService.user!.metadata.creationTime!),
+              userCreationTime: Timestamp.fromDate(
+                AuthService.user!.metadata.creationTime!,
+              ),
             );
             if (!mounted) return;
             authController.addUser(userModel).then((value) {
