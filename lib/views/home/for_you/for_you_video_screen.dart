@@ -200,8 +200,9 @@ class ForYouVideoScreen extends StatelessWidget {
                                       child: Icon(
                                         Icons.favorite,
                                         size: 40,
-                                        color: data.likesList!
-                                                .contains(AuthService.user!.uid)
+                                        color: data.likesList!.contains(
+                                          AuthService.user!.uid,
+                                        )
                                             ? Colors.pink
                                             : Colors.white,
                                       ),

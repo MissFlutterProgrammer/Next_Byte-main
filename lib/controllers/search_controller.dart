@@ -17,7 +17,9 @@ class SearchControllerX extends GetxController {
           .map((QuerySnapshot query) {
         List<UserModel> retVal = [];
         for (var elem in query.docs) {
-          retVal.add(UserModel.fromSnap(elem));
+          retVal.add(
+            UserModel.fromSnap(elem),
+          );
         }
         return retVal;
       }),

@@ -28,7 +28,9 @@ class CommentController extends GetxController {
         (QuerySnapshot query) {
           List<CommentModel> retValue = [];
           for (var element in query.docs) {
-            retValue.add(CommentModel.fromSnap(element));
+            retValue.add(
+              CommentModel.fromSnap(element),
+            );
           }
           return retValue;
         },

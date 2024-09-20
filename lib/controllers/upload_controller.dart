@@ -32,7 +32,9 @@ class UploadController extends GetxController {
         .ref()
         .child('All Videos')
         .child(videoID)
-        .putFile(await compressVideoFile(videoFilePath));
+        .putFile(
+          await compressVideoFile(videoFilePath),
+        );
     TaskSnapshot snapshot = await videoUploadTask;
     String downloadUrlOfVideoUp = await snapshot.ref.getDownloadURL();
     return downloadUrlOfVideoUp;
@@ -88,11 +90,16 @@ class UploadController extends GetxController {
       EasyLoading.dismiss();
       Get.to(const HomeScreen());
       Get.offAllNamed('/home');
-      Get.snackbar('New Video', 'you have successfully upload your new video');
+      Get.snackbar(
+        'New Video',
+        'you have successfully upload your new video',
+      );
     } catch (errorMsg) {
       EasyLoading.dismiss();
-      Get.snackbar('Upload failed!',
-          'Error occurred, your video is not upload. Try again...');
+      Get.snackbar(
+        'Upload failed!',
+        'Error occurred, your video is not upload. Try again...',
+      );
     }
   }
 }

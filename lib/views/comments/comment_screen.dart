@@ -94,8 +94,9 @@ class CommentScreen extends StatelessWidget {
                               child: Icon(
                                 Icons.favorite,
                                 size: 25,
-                                color: comment.likes
-                                        .contains(AuthService.user!.uid)
+                                color: comment.likes.contains(
+                                  AuthService.user!.uid,
+                                )
                                     ? Colors.blueAccent
                                     : Colors.white,
                               ),

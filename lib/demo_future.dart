@@ -386,8 +386,10 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
   }
 
   void _getImage() async {
-    final xFile = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 75);
+    final xFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 75,
+    );
     if (xFile != null) {
       final downloadUrl = await authController.updateImage(xFile);
       await authController.updateProfile(
