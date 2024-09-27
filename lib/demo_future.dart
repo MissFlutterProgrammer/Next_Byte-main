@@ -317,7 +317,6 @@ class _ProfileScreenDemoState extends State<ProfileScreenDemo> {
                                   ),
                                 ),
                                 //_buildSelectGender(),
-
                                 const SizedBox(height: 50),
                                 SizedBox(
                                   height: 36,

@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey,
       ),
       builder: EasyLoading.init(),
-      //home: const SplashScreen(),
+      home: const SplashScreen(),
       unknownRoute: GetPage(
         name: '/404',
         page: () => const SplashScreen(),
